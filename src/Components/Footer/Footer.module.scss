@@ -1,0 +1,51 @@
+footer {
+  width: 100vw;
+  height: 85px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .irent {
+    width: 170px;
+    height: 70px;
+    margin-left: 10px;
+  }
+
+  h1 {
+    align-self: flex-end;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: center;
+    letter-spacing: 0.01em;
+    color: #787878;
+  }
+
+  .social {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 30px;
+
+    h1 {
+      align-self: auto;
+    }
+
+    div {
+      width: 150px;
+      display: flex;
+      justify-content: space-between;
+      img {
+        width: 30px;
+        height: 30px;
+        transition: 1s;
+        cursor: pointer;
+        &:hover {
+          transform: scale(1.2) rotate(360deg);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  width: 300px;
+  height: 600px;
+  border-radius: 15px;
+  background-color: #ffffff;
+  font-family: 'Inter';
+
+  h1 {
+    font-style: normal;
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 25px;
+    text-align: center;
+    letter-spacing: 0.01em;
+    color: #f0a319;
+  }
+
+  //Контейнер каждого поля nput
+  div {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+
+    input {
+      padding: 6px;
+      font-size: 16px;
+      margin-bottom: 2px;
+      background: #c6e0db;
+      border-radius: 5px;
+      font-family: 'Inter', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 25px;
+      letter-spacing: 0.01em;
+      border: 0px;
+    }
+
+    span {
+      font-size: 10px;
+      color: red;
+    }
+  }
+
+  button {
+    background: #f0a319;
+    border: 0px;
+    border-radius: 25px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 18px;
+    letter-spacing: 0.01em;
+    color: #ffffff;
+    width: 216px;
+    height: 58px;
+    margin-top: 20px;
+  }
+}
