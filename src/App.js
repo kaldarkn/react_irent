@@ -1,10 +1,11 @@
 import './App.css';
 
-import Header from './Components/Header';
-import Card from './Components/Card';
-import Signup from './Components/SignUp';
-import Login from './Components/Login';
-import Footer from './Components/Footer';
+import Header from './components/Header';
+import Card from './components/Card';
+import Signup from './components/SignUp';
+import Login from './components/Login';
+import Footer from './components/Footer';
+import { useEffect } from 'react';
 
 const items = [
   {
@@ -83,9 +84,9 @@ function App() {
           <Card key={index} {...item} />
         ))}
       </section>
-      <Footer />
       {/* <Signup /> */}
       {/* <Login /> */}
+      <Footer />
     </div>
   );
 }

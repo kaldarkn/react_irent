@@ -1,83 +1,62 @@
 import { useState } from 'react';
-import style from './Login.module.scss';
+import axios from 'axios';
+import styles from './Login.module.scss';
+
+const REG_VALID = {
+  email: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
+  password: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{8,}$/,
+};
 
 function Login() {
-  let [email, setEmail] = useState('');
-  let [emailError, setEmailError] = useState('');
-  let [password, setPassword] = useState('');
-  let [passwordError, setPasswordError] = useState('');
+  let [state, setState] = useState({ email: '', password: '' });
+  let [error, setError] = useState({ email: '', password: '' });
 
   const handleOnChange = (e) => {
-    switch (e.target.name) {
-      case 'email':
-        setEmail(e.target.value);
-        break;
-
-      case 'password':
-        setPassword(e.target.value);
-        break;
-      default:
-    }
+    setState({ ...state, [e.target.name]: e.target.value });
   };
 
   const handleOnBlur = (e) => {
-    switch (e.target.name) {
-      case 'email':
-        if (email === '') {
-          setEmailError('Поле email не может быть пустым');
-        } else {
-          if (/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(email)) {
-            setEmailError('');
-          } else {
-            setEmailError('Некорректно введён email');
-          }
-        }
-        break;
-
-      case 'password':
-        if (password === '') {
-          setPasswordError('Поле пароля не может быть пустым');
-        } else {
-          //Регулярка: Хоть одна цифра
-          //Хоть одна латиница в верхнем регистре
-          //Хоть одна латиница в нижнем регистре
-          //Во всей строке не допускаются пробелы
-          //Не менее 8 символов
-          if (/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{8,}$/.test(e.target.value)) {
-            setPasswordError('');
-          } else {
-            setPasswordError(
-              'Длина пароля не менее 8 символов. Обязательно должен включать латиницу в верхнем и нижнем регистре и цифры. Без пробелов',
-            );
-          }
-        }
-        break;
-      default:
+    if (state[e.target.name] === '') {
+      setError({ ...error, [e.target.name]: `Поле ${e.target.name} не может быть пустым` });
+    } else {
+      if (REG_VALID[e.target.name].test(state[e.target.name])) {
+        setError({ ...error, [e.target.name]: '' });
+      } else {
+        setError({ ...error, [e.target.name]: `Некорректно введён ${e.target.name}` });
+      }
     }
+  };
+
+  //Еще не дописал (пока тестирую).
+  const submitForm = (e) => {
+    e.preventDefault();
+    axios
+      .post('http://irental.ddns.net/login', { ...state })
+      .then((response) => console.log(response));
   };
 
   return (
     <form>
       <h1>Вход в личный кабинет</h1>
       <input
-        value={email}
+        value={state.email}
         onChange={(event) => handleOnChange(event)}
         onBlur={(event) => handleOnBlur(event)}
         autoComplete="off"
         name="email"
         placeholder="Введите email"
       />
-      <span>{emailError}</span>
+      <span>{error.email}</span>
       <input
-        value={password}
+        value={state.password}
         onChange={(event) => handleOnChange(event)}
         onBlur={(event) => handleOnBlur(event)}
         autoComplete="off"
         name="password"
         placeholder="Введите пароль"
       />
-      <span>{passwordError}</span>
-      <button>Войти</button>
+      <span>{error.password}</span>
+      <button onClick={(e) => submitForm(e)}>Войти</button>
     </form>
   );
 }

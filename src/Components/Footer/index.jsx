@@ -3,20 +3,20 @@ import styles from './Footer.module.scss';
 const Footer = () => {
   return (
     <footer>
-      <img className={styles.irent} src="./image/Icon.png" alt="IRent_icon" />
+      <img className={styles.irent} src="./images/icon.png" alt="IRent_icon" />
       <h1>ООО "IRENTeam"</h1>
 
       <div className={styles.social}>
         <h1>Свяжитесь с нами</h1>
         <div>
           <a href="/#">
-            <img src="./image/Whatsapp.png" alt="whatsapp" />
+            <img src="./images/whatsapp.png" alt="whatsapp" />
           </a>
           <a href="/#">
-            <img src="./image/Facebook.png" alt="facebook" />
+            <img src="./images/facebook.png" alt="facebook" />
           </a>
           <a href="/#">
-            <img src="./image/Instagram.png" alt="instagram" />
+            <img src="./images/instagram.png" alt="instagram" />
           </a>
         </div>
       </div>

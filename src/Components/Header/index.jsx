@@ -3,8 +3,8 @@ import styles from './Header.module.scss';
 const Header = () => {
   return (
     <header>
-      <img className={styles.irent} src="./image/Icon.png" alt="IRent_icon" />
-      <img className={styles.user} src="./image/User.png" alt="User_icon" />
+      <img className={styles.irent} src="./images/icon.png" alt="IRent_icon" />
+      <img className={styles.user} src="./images/user.png" alt="User_icon" />
     </header>
   );
 };
