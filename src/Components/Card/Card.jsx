@@ -16,4 +16,4 @@ const Card = ({ name, price, imageUrl }) => {
   );
 };
 
-export default Card;
+export { Card };

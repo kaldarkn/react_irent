@@ -5,7 +5,6 @@ const Footer = () => {
     <footer>
       <img className={styles.irent} src="./images/icon.png" alt="IRent_icon" />
       <h1>ООО "IRENTeam"</h1>
-
       <div className={styles.social}>
         <h1>Свяжитесь с нами</h1>
         <div>
@@ -24,4 +23,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export { Footer };

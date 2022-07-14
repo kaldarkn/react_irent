@@ -1,54 +1,84 @@
-form {
-  display: flex;
-  flex-direction: column;
-  width: 600px;
-  height: 400px;
-  background-color: white;
+.wrapper {
+  position: absolute;
+  min-width: 100vw;
+  min-height: 100%;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  user-select: none;
 
-  h1 {
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    border-radius: 15px;
+    background-color: #ffffff;
     font-family: 'Inter';
-    font-style: normal;
-    font-weight: 800;
-    font-size: 36px;
-    line-height: 25px;
-    text-align: center;
-    letter-spacing: 0.01em;
-    color: #f0a319;
-  }
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 
-  input {
-    padding: 6px;
-    font-size: 16px;
-    margin-bottom: 2px;
-    background: #c6e0db;
-    border-radius: 5px;
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 25px;
-    letter-spacing: 0.01em;
-    border: 0px;
-  }
+    img {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 7px;
+      right: 7px;
+      cursor: pointer;
+    }
 
-  span {
-    font-size: 10px;
-    color: red;
-  }
+    h1 {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 800;
+      font-size: 28px;
+      line-height: 25px;
+      text-align: center;
+      letter-spacing: 0.01em;
+      padding-top: 15px;
+      color: #f0a319;
+    }
 
-  button {
-    background: #f0a319;
-    border: 0px;
-    border-radius: 25px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 18px;
-    letter-spacing: 0.01em;
-    color: #ffffff;
-    width: 216px;
-    height: 58px;
-    margin-top: 20px;
+    input {
+      padding: 6px;
+      font-size: 16px;
+      margin-bottom: 10px;
+      background: #c6e0db;
+      border-radius: 5px;
+      font-family: 'Inter', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 25px;
+      letter-spacing: 0.01em;
+      border: 0px;
+    }
+
+    span {
+      font-size: 10px;
+      color: red;
+    }
+
+    button {
+      background: #f0a319;
+      border: 0px;
+      border-radius: 25px;
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 18px;
+      letter-spacing: 0.01em;
+      color: #ffffff;
+      width: 216px;
+      height: 58px;
+      margin-top: 20px;
+    }
   }
 }

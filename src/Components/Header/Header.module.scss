@@ -1,4 +1,6 @@
 header {
+  position: fixed;
+  top: 0px;
   width: 100vw;
   height: 85px;
   background-color: white;
@@ -9,18 +11,59 @@ header {
   .irent {
     width: 170px;
     height: 70px;
-    margin-left: 10px;
+    padding-left: 10px;
   }
 
-  .user {
-    width: 65px;
-    height: 65px;
-    margin-right: 30px;
-    transition: 1s;
-    cursor: pointer;
+  div {
+    button {
+      background-color: #867cc6;
+      border: 0px;
+      border-radius: 25px;
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 18px;
+      letter-spacing: 0.01em;
+      color: #ffffff;
+      width: 100px;
+      height: 30px;
+      margin-right: 10px;
+      cursor: pointer;
+      transition: 0.5s;
 
-    &:hover {
-      transform: scale(1.08);
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  div {
+    padding-right: 30px;
+    display: flex;
+    align-items: center;
+    .user {
+      width: 65px;
+      height: 65px;
+      border-radius: 100px;
+      transition: 1s;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.08);
+      }
+    }
+
+    .likes {
+      width: 63px;
+      height: 51px;
+      padding-right: 30px;
+      transition: 1s;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.08);
+      }
     }
   }
 }

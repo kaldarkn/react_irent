@@ -1,11 +1,7 @@
-import './App.css';
+import { useState } from 'react';
+import { Header, Card, Signup, Login, Footer } from './components';
 
-import Header from './components/Header';
-import Card from './components/Card';
-import Signup from './components/SignUp';
-import Login from './components/Login';
-import Footer from './components/Footer';
-import { useEffect } from 'react';
+import './App.css';
 
 const items = [
   {
@@ -76,16 +72,40 @@ const items = [
 ];
 
 function App() {
+  let [authorizedUserData, setAuthorizedUserData] = useState({
+    id: '',
+    email: '',
+    surname: '',
+    name: '',
+    userIonURL: '',
+  });
+  let [loginOpened, setloginOpened] = useState(false);
+  let [signUpOpened, setSignUpOpened] = useState(false);
+
+  const openLogin = () => {
+    setloginOpened(!loginOpened);
+  };
+
+  const openSignUp = () => {
+    setSignUpOpened(!signUpOpened);
+  };
+
   return (
     <div className="App">
-      <Header />
+      <Header
+        authorizedUserData={authorizedUserData}
+        openLogin={openLogin}
+        openSignUp={openSignUp}
+      />
+      {signUpOpened && <Signup openSignUp={openSignUp} />}
+      {loginOpened && !authorizedUserData.id && (
+        <Login openLogin={openLogin} setAuthorizedUserData={setAuthorizedUserData} />
+      )}
       <section className="list">
         {items.map((item, index) => (
           <Card key={index} {...item} />
         ))}
       </section>
-      {/* <Signup /> */}
-      {/* <Login /> */}
       <Footer />
     </div>
   );
