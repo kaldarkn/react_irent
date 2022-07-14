@@ -1,9 +1,13 @@
+import { Link } from 'react-router-dom';
+
 import styles from './Footer.module.scss';
 
 const Footer = () => {
   return (
     <footer>
-      <img className={styles.irent} src="./images/icon.png" alt="IRent_icon" />
+      <Link to="/">
+        <img className={styles.irent} src="./images/icon.png" alt="IRent_icon" />
+      </Link>
       <h1>ООО "IRENTeam"</h1>
       <div className={styles.social}>
         <h1>Свяжитесь с нами</h1>

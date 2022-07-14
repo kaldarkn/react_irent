@@ -1,14 +1,18 @@
+import { Link } from 'react-router-dom';
+
 import styles from './Header.module.scss';
 
 const Header = ({ authorizedUserData, openLogin, openSignUp }) => {
   return (
     <header>
-      <img
-        onClick={() => alert(authorizedUserData.id)}
-        className={styles.irent}
-        src="./images/icon.png"
-        alt="IRent_icon"
-      />
+      <Link to="/">
+        <img
+          onClick={() => alert(authorizedUserData.id)}
+          className={styles.irent}
+          src="./images/icon.png"
+          alt="IRent_icon"
+        />
+      </Link>
       {!Boolean(authorizedUserData.id) ? (
         <div>
           <button onClick={() => openLogin()}>LOGIN</button>
