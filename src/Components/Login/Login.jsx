@@ -27,13 +27,14 @@ function Login({ openLogin, setAuthorizedUserData }) {
     }
   };
 
-  //Еще не дописал (пока тестирую, но работает).
+  //Пока тестирую (запрос рабочий, но нужно обрабатывать ошибки)
   const submitForm = (e) => {
     e.preventDefault();
     axios
       .post('http://irental.ddns.net/login', { ...state })
       .then((response) => {
         setAuthorizedUserData({ ...response.data });
+        console.log(response);
       })
       .catch((error) => alert('Ошибка при авторизации:', error));
   };

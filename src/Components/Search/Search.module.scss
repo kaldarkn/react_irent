@@ -1,0 +1,39 @@
+.search {
+  position: relative;
+  flex-shrink: 0;
+  top: 150px;
+  left: 80px;
+  width: 369px;
+  height: 30px;
+  padding: 15px;
+  padding-left: 45px;
+  background: #ffffff;
+  border: 1px solid #f0a319;
+  border-radius: 15px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 25px;
+  letter-spacing: 0.01em;
+
+  &::after {
+    content: url('../../../public/images/searchIcon.png');
+    position: absolute;
+    left: 15px;
+    top: 13px;
+  }
+
+  input {
+    margin-left: 15px;
+    margin-top: 3px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 25px;
+    letter-spacing: 0.01em;
+    border: none;
+    outline: 0;
+  }
+}

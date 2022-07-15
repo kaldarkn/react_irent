@@ -11,10 +11,11 @@ function App() {
     email: '',
     surname: '',
     name: '',
-    userIonURL: '',
+    userIconURL: '',
   });
   let [loginOpened, setloginOpened] = useState(false);
   let [signUpOpened, setSignUpOpened] = useState(false);
+
   const openLogin = () => {
     setloginOpened(!loginOpened);
   };

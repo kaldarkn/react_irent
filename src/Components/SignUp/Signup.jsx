@@ -66,7 +66,7 @@ const Signup = ({ openSignUp }) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
 
-  //Еще не дописал (пока тестирую, но работает).
+  //Пока тестирую (запрос рабочий, но нужно обрабатывать ошибки)
   const submitForm = (e) => {
     e.preventDefault();
     if (!tempUserId) {
@@ -89,7 +89,6 @@ const Signup = ({ openSignUp }) => {
               headers: { 'Content-Type': 'multipart/form-data' },
             })
             .then((response) => {
-              //Здесь нужно закрывать форму
               setState({});
               setError({});
             })
@@ -97,13 +96,15 @@ const Signup = ({ openSignUp }) => {
         })
         .catch((error) => alert('Ошибка при отправке данных для регистрации:', error));
     } else {
-      console.log(tempUserId);
       axios
         .patch('http://irental.ddns.net/login', {
           tempID: tempUserId,
           emailCode: emailCode,
         })
-        .then(() => setVerification(true))
+        .then(() => {
+          setVerification(true);
+          openSignUp();
+        })
         .catch((error) => alert('Ошибка при отправке кода доступа:', error));
     }
   };
@@ -111,6 +112,7 @@ const Signup = ({ openSignUp }) => {
   const handleChangeInputFile = (e) => {
     //Если файл выбран
     if (e.target.files[0]) {
+      document.getElementById('photo').src = URL.createObjectURL(e.target.files[0]);
       setFile(e.target.files[0]);
     }
   };
@@ -118,88 +120,89 @@ const Signup = ({ openSignUp }) => {
   return (
     <div className={styles.wrapper}>
       <form className={styles.form} method="post">
-        <img onClick={() => openSignUp()} src="images/btnHideForm.png" />
-        <h1 onClick={() => alert(emailCode)}>Регистрация</h1>
+        <img
+          className={styles.hide}
+          onClick={() => openSignUp()}
+          src="images/btnHideForm.png"
+          alt="hideForm"
+        />
+        <h1>Регистрация</h1>
         {tempUserId === '' ? (
           <>
-            <div>
+            <label htmlFor="file">
+              <img id="photo" src="images/addPhoto.png" alt="usetPhoto" />
               <input
                 onChange={(e) => handleChangeInputFile(e)}
                 type="file"
+                id="file"
                 name="photo"
                 accept=".jpg, .jpeg"
               />
-              <span>{error.surname}</span>
-            </div>
-            <div>
-              <input
-                onInput={handleOnInput}
-                onBlur={handleOnBlur}
-                value={state.surname}
-                autoComplete="off"
-                type="text"
-                name="surname"
-                placeholder="Введите фамилию"
-                spellCheck={false}
-              />
-              <span>{error.surname}</span>
-            </div>
-            <div>
-              <input
-                onInput={handleOnInput}
-                onBlur={handleOnBlur}
-                value={state.name}
-                autoComplete="off"
-                type="text"
-                name="name"
-                placeholder="Введите имя"
-                spellCheck={false}
-              />
-              <span>{error.name}</span>
-            </div>
-            <div>
-              <input
-                onInput={handleOnInput}
-                onBlur={handleOnBlur}
-                value={state.email}
-                autoComplete="off"
-                type="email"
-                name="email"
-                placeholder="Введите e-mail"
-                spellCheck={false}
-              />
-              <span>{error.email}</span>
-            </div>
-            <div>
-              <input
-                id="phone"
-                onInput={handleOnInput}
-                onBlur={handleOnBlur}
-                value={state.phone}
-                autoComplete="off"
-                type="tel"
-                name="phone"
-                placeholder="+7(999) 999-99-99"
-                spellCheck={false}
-              />
-              <span>{error.phone}</span>
-            </div>
-            <div>
-              <input
-                onInput={handleOnInput}
-                onBlur={handleOnBlur}
-                value={state.password}
-                autoComplete="off"
-                type="password"
-                name="password"
-                placeholder="Введите пароль"
-                spellCheck={false}
-              />
-              <span>{error.password}</span>
-            </div>
+            </label>
+
+            <input
+              onInput={handleOnInput}
+              onBlur={handleOnBlur}
+              value={state.surname}
+              autoComplete="off"
+              type="text"
+              name="surname"
+              placeholder="Введите фамилию"
+              spellCheck={false}
+            />
+            <span className={styles.errorMessage}>{error.surname}</span>
+
+            <input
+              onInput={handleOnInput}
+              onBlur={handleOnBlur}
+              value={state.name}
+              autoComplete="off"
+              type="text"
+              name="name"
+              placeholder="Введите имя"
+              spellCheck={false}
+            />
+            <span className={styles.errorMessage}>{error.name}</span>
+
+            <input
+              onInput={handleOnInput}
+              onBlur={handleOnBlur}
+              value={state.email}
+              autoComplete="off"
+              type="email"
+              name="email"
+              placeholder="Введите e-mail"
+              spellCheck={false}
+            />
+            <span className={styles.errorMessage}>{error.email}</span>
+
+            <input
+              id="phone"
+              onInput={handleOnInput}
+              onBlur={handleOnBlur}
+              value={state.phone}
+              autoComplete="off"
+              type="tel"
+              name="phone"
+              placeholder="+7(999) 999-99-99"
+              spellCheck={false}
+            />
+            <span className={styles.errorMessage}>{error.phone}</span>
+
+            <input
+              onInput={handleOnInput}
+              onBlur={handleOnBlur}
+              value={state.password}
+              autoComplete="off"
+              type="password"
+              name="password"
+              placeholder="Введите пароль"
+              spellCheck={false}
+            />
+            <span className={styles.errorMessage}>{error.password}</span>
 
             {state.password.length > 0 && error.password.length === 0 && (
-              <div>
+              <>
                 <input
                   onInput={handleOnInput}
                   onBlur={handleOnBlurPwdRepeat}
@@ -210,8 +213,8 @@ const Signup = ({ openSignUp }) => {
                   placeholder="Подтвердите пароль"
                   spellCheck={false}
                 />
-                <span>{error.passwordRepeat}</span>
-              </div>
+                <span className={styles.errorMessage}>{error.passwordRepeat}</span>
+              </>
             )}
           </>
         ) : (
