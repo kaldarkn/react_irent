@@ -16,7 +16,9 @@ const Header = ({ authorizedUserData, openLogin, openSignUp }) => {
       ) : (
         <div>
           <img className={styles.likes} src="./images/heart.png" alt="IRent_icon" />
-          <img className={styles.user} src={authorizedUserData.userIconURL} alt="User_icon" />
+          <Link to="/personal">
+            <img className={styles.user} src={authorizedUserData.userIconURL} alt="User_icon" />
+          </Link>
         </div>
       )}
     </header>

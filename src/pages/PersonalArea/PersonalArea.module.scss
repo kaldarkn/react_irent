@@ -1,0 +1,26 @@
+.personInfo {
+  position: relative;
+  top: 20%;
+  left: 40%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 400px;
+
+  .user {
+    width: 165px;
+    height: 165px;
+    border-radius: 100px;
+    transition: 1s;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.08);
+    }
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}

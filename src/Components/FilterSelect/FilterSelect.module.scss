@@ -1,0 +1,30 @@
+.select {
+  .filterCategory {
+    width: 369px;
+    height: 62px;
+    background: #ffffff;
+    border: 1px solid #f0a319;
+    border-radius: 15px;
+    font-family: 'Inter';
+    font-style: bold;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 25px;
+    letter-spacing: 0.01em;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    text-align: center;
+    color: #f0a319;
+    z-index: 2;
+    cursor: pointer;
+  }
+  &::after {
+    content: url('../../../public/images/listArrow.png');
+    position: absolute;
+    left: 755px;
+    top: 23px;
+    z-index: 2;
+    cursor: pointer;
+  }
+}

@@ -42,7 +42,7 @@ function Login({ openLogin, setAuthorizedUserData }) {
   return (
     <div className={styles.wrapper}>
       <form>
-        <img onClick={() => openLogin()} src="images/btnHideForm.png" />
+        <img onClick={() => openLogin()} src="images/btnHideForm.png" alt="hideForm" />
         <h1>Вход в личный кабинет</h1>
         <input
           value={state.email}

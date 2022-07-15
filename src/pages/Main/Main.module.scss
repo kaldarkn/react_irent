@@ -1,3 +1,13 @@
+.filter {
+  position: relative;
+  top: 150px;
+  left: 80px;
+  width: 820px;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .list {
   display: flex;
   justify-content: space-evenly;

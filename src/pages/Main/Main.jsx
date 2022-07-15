@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Card, Signup, Login, Search } from '../../components';
+import { Card, Signup, Login, Search, FilterSelect } from '../../components';
 
 import styles from './Main.module.scss';
 
@@ -85,10 +85,18 @@ const Main = ({
 
   useEffect(() => {
     //Пока тестирую (запрос рабочий, но нужно обрабатывать ошибки)
-    axios.get(`http://irental.ddns.net/feed?from=1&to=100`).then((response) => {
-      setItems(response.data);
-      setFiltredItems(response.data);
-      console.log(response);
+    axios.get(`http://irental.ddns.net/feed?from=1&to=1000`).then((response) => {
+      //Это костыль (временный, перед презентацией проекта выявились косяки бэка. ПОТОМ УБЕРИ УСЛОВИЕ и РАСКОМЕНТЬ sets)
+      let resp = response.data.map((val, i) => {
+        if (!val.title) {
+          val.title = 'Без названия';
+        }
+        return val;
+      });
+      setItems(resp);
+      setFiltredItems(resp);
+      // setItems(response.data);
+      // setFiltredItems(response.data);
     });
   }, []);
 
@@ -99,7 +107,22 @@ const Main = ({
     setFiltredItems(searchItems);
   };
 
-  useEffect(() => {}, [filtredItems]);
+  let handleOnChangeSetCategory = (e) => {
+    //Пока тестирую (запрос рабочий, но нужно обрабатывать ошибки)
+    axios.get(`http://irental.ddns.net/cards/${e.target.value}`).then((response) => {
+      //Это костыль (временный, перед презентацией проекта выявились косяки бэка. ПОТОМ УБЕРИ УСЛОВИЕ и РАСКОМЕНТЬ sets)
+      let resp = response.data.map((val, i) => {
+        if (!val.title) {
+          val.title = 'Без названия';
+        }
+        return val;
+      });
+      setItems(resp);
+      setFiltredItems(resp);
+      // setItems(response.data);
+      // setFiltredItems(response.data);
+    });
+  };
 
   return (
     <>
@@ -108,7 +131,11 @@ const Main = ({
         <Login openLogin={openLogin} setAuthorizedUserData={setAuthorizedUserData} />
       )}
 
-      <Search handleChangeSearch={handleChangeSearch} />
+      <div className={styles.filter}>
+        <Search handleChangeSearch={handleChangeSearch} />
+        <FilterSelect handleOnChangeSetCategory={handleOnChangeSetCategory} />
+      </div>
+
       <section className={styles.list}>
         {filtredItems.map((item, index) => (
           <Card key={item.id} {...item} />

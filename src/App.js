@@ -45,7 +45,10 @@ function App() {
             />
           }
         />
-        <Route path="/personal" element={<PersonalArea />} />
+        <Route
+          path="/personal"
+          element={<PersonalArea authorizedUserData={authorizedUserData} />}
+        />
       </Routes>
       <Footer />
     </div>
